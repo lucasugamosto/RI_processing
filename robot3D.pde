@@ -122,7 +122,7 @@ void draw() {
   if(tipoDiGiunto[0] == 0) {
     //il giunto 1 è di tipo ROTOIDALE
     text("q1:",10,25);
-    text(q1,40,25);
+    text((q1*180)/PI,40,25);
   }
   
   fill(255,132,0);
@@ -134,7 +134,7 @@ void draw() {
   if(tipoDiGiunto[1] == 0) {
     //il giunto 2 è di tipo ROTOIDALE
     text("q2:",10,50);
-    text(q2,40,50);
+    text((q2*180)/PI,40,50);
   }
   
   fill(14,77,13);
@@ -146,20 +146,20 @@ void draw() {
   if(tipoDiGiunto[2] == 0) {
     //il giunto 3 è di tipo ROTOIDALE
     text("q3:",10,75);
-    text(q3,40,75);
+    text((q3*180)/PI,40,75);
   }
   //tutti i successivi giunti sono di tipo ROTOIDALE
   fill(255,0,200);
   text("q4:",110,25);
-  text(q4,140,25);
+  text((q4*180)/PI,140,25);
   
   fill(0,0,255);
   text("q5:",110,50);
-  text(q5,140,50);
+  text((q5*180)/PI,140,50);
   
   fill(142,135,0);
   text("q6:",110,75);
-  text(q6,140,75);
+  text((q6*180)/PI,140,75);
   
   fill(0);
   text("TT:",10,100);
@@ -199,7 +199,7 @@ void draw() {
   //rappresentazione sulla finestra di lavoro della base su cui poggiano i robot
   stroke(0);
   fill(#F2CB2E);
-  box(100,100,10);
+  box(100,100,15);
   //rappresentazione sulla finestra di lavoro del robot scelto
   strokeWeight(1);
   robot();
@@ -217,61 +217,63 @@ void robot() {
   //funzione utilizzata per la realizzazione del robot scelto tramite la variabile "numRobot"
   if(numRobot == 1) {
     //progettazione robot CARTESIANO+POLSO SFERICO
-    link(0,q1,-PI/2,0);
-    link(-PI/2,q2,-PI/2,0);
-    link(0,q3,0,0);
-    link(q4,Lmin,-PI/2,0);
-    link(q5,0,PI/2,0);
-    link(q6,Lmin,0,0);
+    link(0,q1,-PI/2,0,1);
+    link(-PI/2,q2,-PI/2,0,2);
+    link(0,q3,0,0,3);
+    link(q4,Lmin,-PI/2,0,4);
+    link(q5,0,PI/2,0,5);
+    link(q6,Lmin,0,0,6);
   }
   else if(numRobot == 2) {
     //progettazione robot CILINDRICO+POLSO SFERICO
-    link(q1,L,0,0);
-    link(0,q2,-PI/2,0);
-    link(0,q3,0,0);
-    link(q4,Lmin,-PI/2,0);
-    link(q5,0,PI/2,0);
-    link(q6,Lmin,0,0);
+    link(q1,L,0,0,1);
+    link(0,q2,-PI/2,0,2);
+    link(0,q3,0,0,3);
+    link(q4,Lmin,-PI/2,0,4);
+    link(q5,0,PI/2,0,5);
+    link(q6,Lmin,0,0,6);
   }
   else if(numRobot == 3) {
     //progettazione robot SCARA+POLSO SFERICO
-    link(q1,L,0,D);
-    link(q2,L,0,D);
-    link(0,q3,0,0);
-    link(q4,Lmin,-PI/2,0);
-    link(q5,0,PI/2,0);
-    link(q6,Lmin,0,0);
+    link(q1,L,0,D,1);
+    link(q2,L,PI,D,2);
+    link(0,q3,0,0,3);
+    link(q4,Lmin,-PI/2,0,4);
+    link(q5,0,PI/2,0,5);
+    link(q6,Lmin,0,0,6);
   }
   else if(numRobot == 4) {
     //progettazione robot SFERICO DI 1°TIPO+POLSO SFERICO
-    link(q1,L,PI/2,0);
-    link(q2,0,PI/2,L);
-    link(0,q3,0,0);
-    link(q4,Lmin,-PI/2,0);
-    link(q5,0,PI/2,0);
-    link(q6,Lmin,0,0);
+    link(q1,L,PI/2,0,1);
+    link(q2,0,PI/2,L,2);
+    link(0,q3,0,0,3);
+    link(q4,Lmin,-PI/2,0,4);
+    link(q5,0,PI/2,0,5);
+    link(q6,Lmin,0,0,6);
   }
   else if(numRobot == 5) {
     //progettazione robot SFERICO DI 2°TIPO+POLSO SFERICO
-    link(q1,L,-PI/2,0);
-    link(q2,L,PI/2,0);
-    link(0,q3,0,0);
-    link(q4,Lmin,-PI/2,0);
-    link(q5,0,PI/2,0);
-    link(q6,Lmin,0,0);
+    link(q1,L,-PI/2,0,1);
+    link(q2,L,PI/2,0,2);
+    link(0,q3,0,0,3);
+    link(q4,Lmin,-PI/2,0,4);
+    link(q5,0,PI/2,0,5);
+    link(q6,Lmin,0,0,6);
   }
   else if(numRobot == 6) {
     //progettazione robot ANTROPOMORFO
-    link(q1,L,PI/2,0);
-    link(q2,0,0,L);
-    link(q3,0,PI/2,0);
-    link(q4,Lmin,-PI/2,0);
-    link(q5,0,PI/2,0);
-    link(q6,Lmin,0,0);
+    link(q1,L,PI/2,0,1);
+    link(q2,0,0,L,2);
+    link(q3,0,PI/2,0,3);
+    link(q4,Lmin,-PI/2,0,4);
+    link(q5,0,PI/2,0,5);
+    link(q6,Lmin,0,0,6);
   }
 }
 
-void link(float theta, float d, float alpha, float a) {
+//l'ultimo parametro è in numero intero che indica il numero di giunto che si sta realizzando (usato insieme alle altre variabili per indicare
+//se il giunto in esame è prismatico o rotoidale
+void link(float theta, float d, float alpha, float a, int valoreGiunto) {
   //la funzione seguente serve per realizzare i singoli link del robot
   //eseguire prima operazioni lungo l'asse Z
   rotateZ(theta);
@@ -280,20 +282,62 @@ void link(float theta, float d, float alpha, float a) {
     SistemaDiRiferimento();
   }
   
-  sphere(10);
+  if(valoreGiunto == 1) {
+    if(tipoDiGiunto[0] == 0) {
+      //giunto di tipo rotoidale
+      sphere(12);
+    }
+    else {
+      //giunto di tipo prismatico
+      fill(0);
+      box(20,20,20);
+      fill(#F2CB2E);
+    }
+  }
+  else if(valoreGiunto == 2) {
+    if(tipoDiGiunto[1] == 0) {
+      //giunto di tipo rotoidale
+      sphere(12);
+    }
+    else {
+      //giunto di tipo prismatico
+      fill(0);
+      box(20,20,20);
+      fill(#F2CB2E);
+    }
+  }
+  else if(valoreGiunto == 3) {
+    if(tipoDiGiunto[2] == 0) {
+      //giunto di tipo rotoidale
+      sphere(12);
+    }
+    else {
+      //giunto di tipo prismatico
+      fill(0);
+      box(20,20,20);
+      fill(#F2CB2E);
+    }
+  }
+  else {
+    sphere(12);
+  }
+  
   translate(0,0,d/2);
   box(15,15,d);
   translate(0,0,d/2);
   
   //eseguo poi operazioni lungo l'asse X
   rotateX(alpha);
-  sphere(10);
+  
+  sphere(12);
+  
   translate(a/2,0,0);
   box(a,15,15);
   translate(a/2,0,0);
 }
 
 void SistemaDiRiferimento() {
+  //ASSE X
   stroke(255,0,0);
   line(0,0,0,100,0,0);
   translate(100,0,0);
@@ -302,6 +346,7 @@ void SistemaDiRiferimento() {
   text("x",0,0);
   translate(-100,0,0);
   
+  //ASSE Y
   stroke(0,255,0);
   line(0,0,0,0,100,0);
   translate(0,100,0);
@@ -310,6 +355,7 @@ void SistemaDiRiferimento() {
   text("y",0,0);
   translate(0,-100,0);
   
+  //ASSE Z
   stroke(0,0,255);
   line(0,0,0,0,0,100);
   translate(0,0,100);
@@ -335,7 +381,7 @@ void mouseDragged() {
 }
 
 void keyPressed() {
-  float incremento = 1.5;
+  float incremento = 1;
   
   //premento il tasto '0' le variabili di riferimento q vengono resettate
   if(keyCode == '0') {
@@ -399,7 +445,7 @@ void keyPressed() {
           q1ref = q1ref - incremento;
         }
         else {
-          q1ref = q1ref - incremento/2;
+          q1ref = q1ref - incremento/4;
         }
       }
     }
@@ -413,7 +459,7 @@ void keyPressed() {
           q2ref = q2ref - incremento;
         }
         else {
-          q2ref = q2ref - incremento/2;
+          q2ref = q2ref - incremento/4;
         }
       }
     }
@@ -427,18 +473,18 @@ void keyPressed() {
           q3ref = q3ref - incremento;
         }
         else {
-          q3ref = q3ref - incremento/2;
+          q3ref = q3ref - incremento/4;
         }
       }
     }
     else if(numGiunto == 4) {
-      q4ref = q4ref - incremento/2;
+      q4ref = q4ref - incremento/4;
     }
     else if(numGiunto == 5) {
-      q5ref = q5ref - incremento/2;
+      q5ref = q5ref - incremento/4;
     }
     else if(numGiunto == 6) {
-      q6ref = q6ref - incremento/2;
+      q6ref = q6ref - incremento/4;
     }
   }
   if(keyCode == RIGHT) {
@@ -447,7 +493,7 @@ void keyPressed() {
         q1ref = q1ref + incremento;
       }
       else {
-        q1ref = q1ref + incremento/2;
+        q1ref = q1ref + incremento/4;
       }
     }
     else if(numGiunto == 2) {
@@ -455,7 +501,7 @@ void keyPressed() {
         q2ref = q2ref + incremento;
       }
       else {
-        q2ref = q2ref + incremento/2;
+        q2ref = q2ref + incremento/4;
       }
     }
     else if(numGiunto == 3) {
@@ -463,17 +509,17 @@ void keyPressed() {
         q3ref = q3ref + incremento;
       }
       else {
-        q3ref = q3ref + incremento/2;
+        q3ref = q3ref + incremento/4;
       }
     }
     else if(numGiunto == 4) {
-      q4ref = q4ref + incremento/2;
+      q4ref = q4ref + incremento/4;
     }
     else if(numGiunto == 5) {
-      q5ref = q5ref + incremento/2;
+      q5ref = q5ref + incremento/4;
     }
     else if(numGiunto == 6) {
-      q6ref = q6ref + incremento/2;
+      q6ref = q6ref + incremento/4;
     }
   }
   //con le seguenti istruzioni si va a selezionare il robot da rappresentare sulla finestra di lavoro
@@ -589,7 +635,7 @@ void oscilloscopio() {
   text("-200",460,550);
   text("-250",460,600);
   
-  text("asse Y: [m] e [rad]",550,40);
+  text("asse Y: [m] e [gradi]",550,40);
   text("asse X: [s]",550,60);
 }
 
@@ -600,6 +646,14 @@ void andamenti_variabili_q(FloatList lista1, FloatList lista2, FloatList lista3,
   //variabile di giunto 1
   stroke(255,0,0);
   float val_q1 = q1;
+  
+  if(tipoDiGiunto[0] == 1) {
+    val_q1 = q1;
+  }
+  else if(tipoDiGiunto[0] == 0) {
+    val_q1 = (q1*180)/PI;
+  }
+  
   for(int i = 0; i < 399; i++) {
     float val_q1_next = lista1.get(i+1);
     lista1.set(i+1,val_q1);
@@ -616,6 +670,14 @@ void andamenti_variabili_q(FloatList lista1, FloatList lista2, FloatList lista3,
   //variabile di giunto 2
   stroke(255,132,0);
   float val_q2 = q2;
+  
+  if(tipoDiGiunto[1] == 1) {
+    val_q2 = q2;
+  }
+  else if(tipoDiGiunto[1] == 0) {
+    val_q2 = (q2*180)/PI;
+  }
+  
   for(int i = 0; i < 399; i++) {
     float val_q2_next = lista2.get(i+1);
     lista2.set(i+1,val_q2);
@@ -631,6 +693,14 @@ void andamenti_variabili_q(FloatList lista1, FloatList lista2, FloatList lista3,
   //variabile di giunto 3
   stroke(14,77,13);
   float val_q3 = q3;
+  
+  if(tipoDiGiunto[2] == 1) {
+    val_q3 = q3;
+  }
+  else if(tipoDiGiunto[2] == 0) {
+    val_q3 = (q3*180)/PI;
+  }
+  
   for(int i = 0; i < 399; i++) {
     float val_q3_next = lista3.get(i+1);
     lista3.set(i+1,val_q3);
@@ -646,30 +716,54 @@ void andamenti_variabili_q(FloatList lista1, FloatList lista2, FloatList lista3,
   //variabile di giunto 4 è di tipo rotoidale sempre
   stroke(255,0,200);
   float val_q4 = q4;
+  
+  val_q4 = (val_q4*180)/PI;
+  
   for(int i = 0; i < 399; i++) {
     float val_q4_next = lista4.get(i+1);
     lista4.set(i+1,val_q4);
-    line(900-i,350-val_q4,899-i,350-val_q4_next);
-    val_q4 = val_q4_next;
+    if(350-val_q4_next < 100 || 350-val_q4_next > 600) {
+      noStroke();
+    }
+    else {
+      line(900-i,350-val_q4,899-i,350-val_q4_next);
+      val_q4 = val_q4_next;
+    }
   }
   
   //variabile di giunto 5 è di tipo rotoidale sempre
   stroke(0,0,255);
   float val_q5 = q5;
+  
+  val_q5 = (val_q5*180)/PI;
+  
   for(int i = 0; i < 399; i++) {
     float val_q5_next = lista5.get(i+1);
     lista5.set(i+1,val_q5);
-    line(900-i,350-val_q5,899-i,350-val_q5_next);
-    val_q5 = val_q5_next;
+    if(350-val_q5_next < 100 || 350-val_q5_next > 600) {
+      noStroke();
+    }
+    else {
+      line(900-i,350-val_q5,899-i,350-val_q5_next);
+      val_q5 = val_q5_next;
+    }
   }
   
   //variabile di giunto 6 è di tipo rotoidale sempre
   stroke(142,135,0);
   float val_q6 = q6;
+  
+  val_q6 = (val_q6*180)/PI;
+  
   for(int i = 0; i < 399; i++) {
     float val_q6_next = lista6.get(i+1);
     lista6.set(i+1,val_q6);
-    line(900-i,350-val_q6,899-i,350-val_q6_next);
-    val_q6 = val_q6_next;
+    if(350-val_q6_next < 100 || 350-val_q6_next > 600) {
+      noStroke();
+    }
+    else {
+      line(900-i,350-val_q6,899-i,350-val_q6_next);
+      val_q6 = val_q6_next;
+    }
   }
 }

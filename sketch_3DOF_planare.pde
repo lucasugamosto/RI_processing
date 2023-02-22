@@ -3,15 +3,15 @@
 //INTERAZIONE CON I PULSANTI:
 //Premendo il tasto "1" sulla tastiera si può cambiare il gomito poichè questo corrisponde a cambiare il segno della soluzione di sen(q2)
 //Premendo le frecce direzionali SX e/o DX è possibile variarie il valore di k (compreso tra -1 e 0)
-//Premendo le frecce direzionali UP/DOWN è possibile variare l'angolo totale "phi"
+//Premendo le frecce direzionali UP/DOWN è possibile variare l'angolo totale "phi" di 0.5 gradi.
 
 float q1 = 0.0;                    //variabile di giunto del primo link
 float q2 = 0.0;                    //variabile di giunto del secondo link
 float q3 = 0.0;                    //variabile di giunto del terzo link
 float phi = 0.0;                   //angolo data dalla somma delle tre variabili rotoidali
-float q1ref = 0.0;
-float q2ref = 0.0;
-float q3ref = 0.0;
+float q1ref;
+float q2ref;
+float q3ref;
 float xxx = 0.0;                    //variabile che indica la coordinata x dell'end-effector
 float yyy = 0.0;                    //variabile che indica la coordinata y dell'end-effector
 float xx = 0.0;                     //coordinate lungo x del giunto xxx-L3*cos(phi), cioè del polso sferico
@@ -122,36 +122,6 @@ void link(float q, float L, float D) {
   ellipse(0,0,D,D);
 }
 
-/*
-void mousePressed() {
-  float L1 = 100.0;
-  float L2 = 100.0;
-  float L3 = 100.0;
-  
-  //le coordinate saranno calcolate considerando la posizione del mouse sulla finestra di lavoro
-  xxx = mouseX-350;
-  yyy = mouseY-350;
-  
-  xx = xxx-L3*cos(phi);
-  yy = yyy-L3*sin(phi);
-  
-  //studio della cinematica inversa e calcolo dei valori q1ref, q2ref, q3ref
-  float a = (xx*xx + yy*yy - L1*L1 - L2*L2)/(2*L1*L2);
-  float c2 = a;
-  float s2 = gomito*sqrt(abs(1-a*a));
-  
-  float A = L1 + L2*c2;
-  float B = L2*s2;
-  
-  float c1 = A*xx+B*yy;
-  float s1 = A*yy-B*xx;
-  
-  q1ref = atan2(s1,c1);
-  q2ref = atan2(s2,c2);
-  q3ref = phi-q1ref-q2ref;
-}*/
-
-
 void keyPressed() {
   if(keyCode == '1') {
     gomito = -gomito;
@@ -175,9 +145,9 @@ void keyPressed() {
   
   //aumenta o diminuisce l'incremento da apportare all'angolo phi, affinchè un punto nello spazio operativo sia raggiungibilie
   if(keyCode == UP) {
-    phi = phi + PI/180;
+    phi = phi + PI*(0.5)/180;
   }
   if(keyCode == DOWN) {
-    phi = phi - PI/180;
+    phi = phi - PI*(0.5)/180;
   }
 }
